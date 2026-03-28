@@ -209,24 +209,24 @@ The czz-project-analyzer skill uses a comprehensive documentation system where e
 
 ```mermaid
 graph TD
-    A[User: Analyze project] --> B[SKILL.md: Step 0 Preparation]
-    B --> C[Read TEMPLATE.md]
-    B --> D[Use CHANGELOG_TEMPLATE.md]
+    A["User: Analyze project"] --> B["SKILL.md: Step 0 Preparation"]
+    B --> C["Read TEMPLATE.md"]
+    B --> D["Use CHANGELOG_TEMPLATE.md"]
     B --> E["Create ~/ai/code-analysi/{project-name}/ directory"]
 
-    C --> F[SKILL.md: Step 1-N Analysis]
-    D --> G[Create analysis-todo.md]
-    E --> H[Follow PATH_GUIDE.md rules]
+    C --> F["SKILL.md: Step 1-N Analysis"]
+    D --> G["Create analysis-todo.md"]
+    E --> H["Follow PATH_GUIDE.md rules"]
 
-    F --> I[Reference WORKFLOW.md for methodology]
-    F --> J[Follow DOCUMENTATION_GUIDELINES.md]
-    I --> K[Create topic documents]
+    F --> I["Reference WORKFLOW.md for methodology"]
+    F --> J["Follow DOCUMENTATION_GUIDELINES.md"]
+    I --> K["Create topic documents"]
     J --> K
     H --> K
 
-    K --> L[Update progress tracking]
-    L --> M[Report to user]
-    M --> N[Continue to next topic]
+    K --> L["Update progress tracking"]
+    L --> M["Report to user"]
+    M --> N["Continue to next topic"]
 
     style A fill:#e1f5ff
     style B fill:#fff4e1

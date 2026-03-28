@@ -293,8 +293,7 @@ Every mermaid block generated during analysis MUST follow these rules. Violation
 | `(` | `)` | Rounded | `R(Label)` |
 | `([` | `])` | Stadium | `S([Start])` |
 | `[[` | `]]` | Subroutine | `X[[Process]]` |
-| `[(`
-| `)]` | Cylinder | `DB[(Database)]` |
+| `[(` | `)]` | Cylinder | `DB[(Database)]` |
 
 **NEVER** mix: `{Decision]` or `[Choice}` are syntax errors.
 
@@ -317,6 +316,7 @@ end
 - Contains `[]`: `ID["items[0]"]`
 - Contains `:` + `/`: `ID["CIDR: 10.0.0.0/16"]`
 - Contains `<br/>` + `()`: `ID["Process<br/>(async)"]`
+- Contains `{}`: `ID["Create ~/path/{project-name}/ dir"]` — `{}` is parsed as DIAMOND_START/END
 
 **sequenceDiagram rules**:
 - `alt`/`else`/`end` blocks only — never `alt cond1|cond2| target`
@@ -338,6 +338,7 @@ end
 3. No `style` in sequenceDiagram or stateDiagram
 4. All subgraph labels quoted if they contain spaces
 5. No `#` comments (use `%%`)
+6. Labels containing `{}``[]` `()` must be wrapped in double quotes
 
 ## Progress Reporting Format
 

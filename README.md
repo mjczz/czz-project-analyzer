@@ -212,7 +212,7 @@ graph TD
     A[User: Analyze project] --> B[SKILL.md: Step 0 Preparation]
     B --> C[Read TEMPLATE.md]
     B --> D[Use CHANGELOG_TEMPLATE.md]
-    B --> E[Create ~/ai/code-analysi/{project-name}/ directory]
+    B --> E["Create ~/ai/code-analysi/{project-name}/ directory"]
 
     C --> F[SKILL.md: Step 1-N Analysis]
     D --> G[Create analysis-todo.md]

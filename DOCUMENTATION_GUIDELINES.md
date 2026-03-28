@@ -313,7 +313,8 @@ Each topic document follows a unified structure:
 ## 📈 Visualization
 
 ```mermaid
-[Relevant diagrams]
+%% Add relevant Mermaid diagrams here
+%% Example: graph TD, sequenceDiagram, flowchart, etc.
 ```
 
 ## 🔗 Source Code References

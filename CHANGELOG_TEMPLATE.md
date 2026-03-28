@@ -143,6 +143,6 @@ gantt
 
 ---
 
-*This document is automatically maintained by czz-project skill*
+*This document is automatically maintained by czz-project-analyzer skill*
 *Last updated: [auto-updated timestamp]*
 *Update frequency: Updated once after completing each topic*

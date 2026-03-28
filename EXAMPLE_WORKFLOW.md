@@ -1,6 +1,6 @@
 # Project Analyzer - Progressive Documentation Creation Examples
 
-This document demonstrates how to use the czz-project skill for progressive analysis, creating independent documents for each topic.
+This document demonstrates how to use the czz-project-analyzer skill for progressive analysis, creating independent documents for each topic.
 
 ## 🎯 Analysis Example: Analyzing Local Kubernetes Project
 

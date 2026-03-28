@@ -1,6 +1,6 @@
 # Project Analyzer Heartbeat Test
 
-This document demonstrates how the heartbeat detection system works in the czz-project skill.
+This document demonstrates how the heartbeat detection system works in the czz-project-analyzer skill.
 
 ## Test Scenario
 

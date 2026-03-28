@@ -1,6 +1,6 @@
 # Project Analyzer - Progressive Analysis Workflow
 
-This guide extends the czz-project skill with systematic deep-dive analysis methodologies inspired by Kubernetes source code analysis.
+This guide extends the czz-project-analyzer skill with systematic deep-dive analysis methodologies inspired by Kubernetes source code analysis.
 
 ## Analysis Modes
 
@@ -293,4 +293,4 @@ When analysis needs to continue:
 
 ---
 
-*This workflow guide integrates the systematic analysis methodology from Kubernetes deep-dive analysis into the czz-project skill.*
+*This workflow guide integrates the systematic analysis methodology from Kubernetes deep-dive analysis into the czz-project-analyzer skill.*

@@ -1,4 +1,4 @@
-# czz-project
+# czz-project-analyzer
 
 A comprehensive open source project analysis skill for OpenClaw agents.
 
@@ -100,23 +100,23 @@ Documents are also integrated with docs-site for web hosting.
 Install via OpenClaw skills CLI:
 
 ```bash
-npx skills add [your-username]/czz-project
+npx skills add [your-username]/czz-project-analyzer
 ```
 
 Or manual installation:
 
 ```bash
 # Clone to skills directory
-git clone https://github.com/[your-username]/czz-project ~/.openclaw/skills/czz-project
+git clone https://github.com/[your-username]/czz-project-analyzer ~/.openclaw/skills/czz-project-analyzer
 
 # Or
-git clone https://github.com/[your-username]/czz-project ~/.agents/skills/czz-project
+git clone https://github.com/[your-username]/czz-project-analyzer ~/.agents/skills/czz-project-analyzer
 ```
 
 ## File Structure
 
 ```
-czz-project/
+czz-project-analyzer/
 ├── SKILL.md                    # 👨‍💻 Main skill definition - orchestrates the entire analysis process
 ├── TEMPLATE.md                 # 📋 Analysis template - used in Step 0 to define structure
 ├── CHANGELOG_TEMPLATE.md       # 📝 Changelog template - used in Step 0 to create TODO list
@@ -133,7 +133,7 @@ czz-project/
 
 ### How Supporting Documents Work Together
 
-The czz-project skill uses a comprehensive documentation system where each file serves a specific purpose:
+The czz-project-analyzer skill uses a comprehensive documentation system where each file serves a specific purpose:
 
 #### 🎯 **Core Execution Files**
 
@@ -147,7 +147,7 @@ The czz-project skill uses a comprehensive documentation system where each file 
 
 **TEMPLATE.md** - Analysis structure template
 - **When used**: Step 0 - Preparation phase
-- **How used**: `SKILL.md` instructs to read from `~/.agents/skills/czz-project/TEMPLATE.md`
+- **How used**: `SKILL.md` instructs to read from `~/.agents/skills/czz-project-analyzer/TEMPLATE.md`
 - **Purpose**: Defines all 20 analysis topics (12 standard + 8 deep-dive)
 - **Content**: Topic structure, required information, diagram placeholders
 

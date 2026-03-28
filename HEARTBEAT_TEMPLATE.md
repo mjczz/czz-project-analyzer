@@ -1,6 +1,6 @@
 # Project Analyzer Heartbeat Template
 
-This template defines how the czz-project skill uses OpenClaw's memory system for heartbeat detection during project analysis.
+This template defines how the czz-project-analyzer skill uses OpenClaw's memory system for heartbeat detection during project analysis.
 
 ## Purpose
 

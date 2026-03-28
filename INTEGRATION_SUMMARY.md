@@ -2,7 +2,7 @@
 
 ## Integration Overview
 
-Successfully integrated the systematic analysis methodology from the Kubernetes deep-dive analysis project into the `czz-project` skill, significantly enhancing its technical depth analysis capabilities.
+Successfully integrated the systematic analysis methodology from the Kubernetes deep-dive analysis project into the `czz-project-analyzer` skill, significantly enhancing its technical depth analysis capabilities.
 
 ## Core Improvements
 
@@ -86,7 +86,7 @@ Helps users deeply understand:
 ## File Structure
 
 ```
-czz-project/
+czz-project-analyzer/
 ├── SKILL.md              # Enhanced skill definition (with deep analysis)
 ├── TEMPLATE.md           # Expanded analysis template (+8 deep topics)
 ├── WORKFLOW.md           # New: Progressive analysis workflow
@@ -124,7 +124,7 @@ Agent: Execute Deep Analysis Mode (20 topics, ~2 hours)
 
 ## Future Development
 
-This integration brings the following to the czz-project skill:
+This integration brings the following to the czz-project-analyzer skill:
 - Stronger technical analysis capabilities
 - More systematic analysis framework
 - Richer output content

@@ -281,6 +281,64 @@ sequenceDiagram
     Frontend-->>User: Result
 ```
 
+### Mermaid Syntax Rules (MANDATORY)
+
+Every mermaid block generated during analysis MUST follow these rules. Violations cause parse errors.
+
+**Bracket Matching** — opening and closing brackets for node shapes MUST match:
+| Opening | Closing | Shape | Example |
+|---------|---------|-------|---------|
+| `[` | `]` | Rectangle | `A[Label]` |
+| `{` | `}` | Diamond | `D{Decision}` |
+| `(` | `)` | Rounded | `R(Label)` |
+| `([` | `])` | Stadium | `S([Start])` |
+| `[[` | `]]` | Subroutine | `X[[Process]]` |
+| `[(`
+| `)]` | Cylinder | `DB[(Database)]` |
+
+**NEVER** mix: `{Decision]` or `[Choice}` are syntax errors.
+
+**Reserved keywords** (case-insensitive) — never use as node/participant IDs:
+`loop`, `end`, `alt`, `opt`, `par`, `critical`, `break`
+
+Use a suffix: `LoopNode`, `EndState`, `AltPath`.
+
+**Comment syntax**: use `%%` only. `#` causes parse error.
+
+**Subgraph labels**: always quote labels containing spaces or special characters:
+```
+subgraph "Frontend Layer"   %% correct
+    A[UI]
+end
+```
+
+**Node labels with special characters** — wrap in double quotes:
+- Contains `@`: `ID["@ notification"]`
+- Contains `[]`: `ID["items[0]"]`
+- Contains `:` + `/`: `ID["CIDR: 10.0.0.0/16"]`
+- Contains `<br/>` + `()`: `ID["Process<br/>(async)"]`
+
+**sequenceDiagram rules**:
+- `alt`/`else`/`end` blocks only — never `alt cond1|cond2| target`
+- `style` directive does NOT work in sequenceDiagram — never use it there
+- `Note over A,B: text` is valid only in sequenceDiagram
+
+**flowchart/graph rules**:
+- `style` directive works ONLY in graph/flowchart — never in sequenceDiagram or stateDiagram
+- Keep style directives simple: `style A fill:#bbf,stroke:#333` (omit `stroke-width`)
+
+**Avoid fragile diagram types**:
+- `gitGraph` — unreliable rendering; use `graph LR` flowchart instead
+- Nested subgraphs with empty labels — always give meaningful labels
+- `stateDiagram` with complex transitions — keep simple
+
+**Self-check before saving**: after writing any mermaid block, verify:
+1. Every opening bracket has a matching closing bracket of the same type
+2. No reserved keyword used as node/participant ID
+3. No `style` in sequenceDiagram or stateDiagram
+4. All subgraph labels quoted if they contain spaces
+5. No `#` comments (use `%%`)
+
 ## Progress Reporting Format
 
 Always report after completing each topic:
@@ -552,7 +610,6 @@ Use when user asks for:
 
 ### Related Skills
 - `docs-site` - For scaffolding the multi-project documentation hub at `~/ai/code-analysi/site/`
-- `pretty-mermaid` - For advanced Mermaid diagram rendering
 - `pretty-mermaid` - For advanced Mermaid diagram rendering
 - `github` - For GitHub API access and repository data
 

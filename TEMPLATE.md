@@ -33,12 +33,12 @@
 
 ```mermaid
 graph LR
-    A[Core Module] --> B[Utils Module]
-    A --> C[Config Module]
-    D[API Layer] --> A
-    D --> E[Middleware]
+    A["Core Module"] --> B["Utils Module"]
+    A --> C["Config Module"]
+    D["API Layer"] --> A
+    D --> E["Middleware"]
     E --> C
-    F[Tests] --> A
+    F["Tests"] --> A
 ```
 
 ---
@@ -56,16 +56,16 @@ graph LR
 
 ```mermaid
 graph TD
-    A[Application] --> B[Core Library 1]
-    A --> C[Core Library 2]
-    B --> D[Utility Library]
+    A["Application"] --> B["Core Library 1"]
+    A --> C["Core Library 2"]
+    B --> D["Utility Library"]
     C --> D
-    B --> E[Third-party API]
-    C --> F[Database Driver]
+    B --> E["Third-party API"]
+    C --> F["Database Driver"]
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:1px
-    style C fill:#bbf,stroke:#333,stroke-width:1px
+    style A fill:#f9f,stroke:#333
+    style B fill:#bbf,stroke:#333
+    style C fill:#bbf,stroke:#333
 ```
 
 ---
@@ -110,17 +110,17 @@ sequenceDiagram
 ```mermaid
 graph TB
     subgraph "Frontend Layer"
-        A[UI Components]
+        A["UI Components"]
     end
 
     subgraph "Business Layer"
-        B[Service A]
-        C[Service B]
+        B["Service A"]
+        C["Service B"]
     end
 
     subgraph "Data Layer"
-        D[(Database)]
-        E[(Cache)]
+        D[("Database")]
+        E[("Cache")]
     end
 
     A --> B
@@ -139,14 +139,14 @@ graph TB
 
 ```mermaid
 flowchart LR
-    A[User Request] --> B[Gateway/Router]
-    B --> C[Business Logic Processing]
-    C --> D{Data Processing}
-    D --> E[Query Database]
-    D --> F[Call External Services]
-    E --> G[Assemble Response]
+    A["User Request"] --> B["Gateway/Router"]
+    B --> C["Business Logic Processing"]
+    C --> D{"Data Processing"}
+    D --> E["Query Database"]
+    D --> F["Call External Services"]
+    E --> G["Assemble Response"]
     F --> G
-    G --> H[Return to User]
+    G --> H["Return to User"]
 ```
 
 ---
@@ -322,13 +322,13 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[Start] --> B[Step 1]
-    B --> C{Condition Check}
-    C -->|Condition Met| D[Step 2A]
-    C -->|Condition Not Met| E[Step 2B]
-    D --> F[Step 3]
+    A["Start"] --> B["Step 1"]
+    B --> C{"Condition Check"}
+    C -->|Condition Met| D["Step 2A"]
+    C -->|Condition Not Met| E["Step 2B"]
+    D --> F["Step 3"]
     E --> F
-    F --> G[End]
+    F --> G["End"]
 ```
 
 **Key Code Snippets:**
@@ -353,19 +353,19 @@ function keyImplementation() {
 ```mermaid
 graph TB
     subgraph "External Interface Layer"
-        A[API/Interface]
+        A["API/Interface"]
     end
 
     subgraph "Core Component Layer"
-        B[Component 1]
-        C[Component 2]
-        D[Component 3]
+        B["Component 1"]
+        C["Component 2"]
+        D["Component 3"]
     end
 
     subgraph "Foundation Service Layer"
-        E[Storage]
-        F[Network]
-        G[Configuration]
+        E["Storage"]
+        F["Network"]
+        G["Configuration"]
     end
 
     A --> B
@@ -434,12 +434,12 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    A[User Action] --> B[Frontend Processing]
-    B --> C[API Call]
-    C --> D[Business Logic]
-    D --> E[Data Operation]
-    E --> F[Result Return]
-    F --> G[User Response]
+    A["User Action"] --> B["Frontend Processing"]
+    B --> C["API Call"]
+    C --> D["Business Logic"]
+    D --> E["Data Operation"]
+    E --> F["Result Return"]
+    F --> G["User Response"]
 
     style A fill:#e1f5ff
     style G fill:#e1f5ff
@@ -497,14 +497,14 @@ flowchart LR
 
 ```mermaid
 graph LR
-    A[Performance Optimization Strategy] --> B[Caching Mechanism]
-    A --> C[Connection Pool]
-    A --> D[Async Processing]
-    A --> E[Data Sharding]
+    A["Performance Optimization Strategy"] --> B["Caching Mechanism"]
+    A --> C["Connection Pool"]
+    A --> D["Async Processing"]
+    A --> E["Data Sharding"]
 
-    B --> F[Improve Response Speed]
+    B --> F["Improve Response Speed"]
     C --> F
-    D --> G[Increase Throughput]
+    D --> G["Increase Throughput"]
     E --> G
 ```
 
@@ -533,15 +533,15 @@ graph LR
 ```mermaid
 graph TB
     subgraph "Test Levels"
-        A[Unit Tests]
-        B[Integration Tests]
-        C[System Tests]
+        A["Unit Tests"]
+        B["Integration Tests"]
+        C["System Tests"]
     end
 
     subgraph "Test Support"
-        D[Mock Tools]
-        E[Test Data]
-        F[Test Environment]
+        D["Mock Tools"]
+        E["Test Data"]
+        F["Test Environment"]
     end
 
     A --> D
@@ -579,10 +579,10 @@ section:
 ```mermaid
 graph TB
     subgraph "Production Environment"
-        A[Load Balancer]
-        B[App Instance 1]
-        C[App Instance 2]
-        D[(Database)]
+        A["Load Balancer"]
+        B["App Instance 1"]
+        C["App Instance 2"]
+        D[("Database")]
     end
 
     A --> B
@@ -664,20 +664,16 @@ erDiagram
 
 #### Git Branching Strategy (if applicable)
 
+> Note: Avoid `gitGraph` — it is fragile and often fails to render. Use a flowchart instead:
+
 ```mermaid
-gitGraph
-    commit
-    branch develop
-    checkout develop
-    commit
-    branch feature/new-feature
-    checkout feature/new-feature
-    commit
-    commit
-    checkout develop
-    merge feature/new-feature
-    checkout main
-    merge develop
+graph LR
+    A["main"] --> B["develop"]
+    B --> C["feature-A"]
+    B --> D["feature-B"]
+    C --> E["merge to develop"]
+    D --> E
+    E --> F["merge to main"]
 ```
 
 **One-sentence evaluation:**

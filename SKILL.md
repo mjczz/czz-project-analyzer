@@ -311,7 +311,15 @@ subgraph "Frontend Layer"   %% correct
 end
 ```
 
-**Node labels with special characters** — wrap in double quotes:
+**ALL node labels MUST use double quotes** — always wrap in `["..."]`, even for plain text:
+```
+A["User: Analyze project"]          %% correct — safe from `:` parsing
+B["SKILL.md: Step 0 Preparation"]   %% correct — safe from `.` `:` parsing
+C["Read TEMPLATE.md"]               %% correct — consistent style
+```
+NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label text"]`.
+
+**Node labels with special characters** — these are the most common breakage cases:
 - Contains `@`: `ID["@ notification"]`
 - Contains `[]`: `ID["items[0]"]`
 - Contains `:` + `/`: `ID["CIDR: 10.0.0.0/16"]`

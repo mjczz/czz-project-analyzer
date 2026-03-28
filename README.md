@@ -100,17 +100,17 @@ Documents are also integrated with docs-site for web hosting.
 Install via OpenClaw skills CLI:
 
 ```bash
-npx skills add [your-username]/czz-project-analyzer
+npx skills add mjczz/czz-project-analyzer
 ```
 
 Or manual installation:
 
 ```bash
 # Clone to skills directory
-git clone https://github.com/[your-username]/czz-project-analyzer ~/.openclaw/skills/czz-project-analyzer
+git clone https://github.com/mjczz/czz-project-analyzer ~/.openclaw/skills/czz-project-analyzer
 
 # Or
-git clone https://github.com/[your-username]/czz-project-analyzer ~/.agents/skills/czz-project-analyzer
+git clone https://github.com/mjczz/czz-project-analyzer ~/.agents/skills/czz-project-analyzer
 ```
 
 ## File Structure
@@ -271,7 +271,7 @@ MIT
 
 ## Author
 
-Created by [Your Name]
+Created by Mjczz
 
 ---
 

@@ -368,6 +368,17 @@ A->>Tool Result                %% WRONG — no colon, "Tool Result" parsed as no
   ```
   `LR` is fine for short fan-out diagrams (≤7 nodes in longest chain).
 
+- **Subgraph labels must not share a name with any child node ID** — causes "Setting X as parent of X would create a cycle":
+  ```
+  subgraph "Dedupe"                    %% WRONG — subgraph name = node ID
+      Dedupe["Dedupe Cache"]
+  end
+
+  subgraph "Dedupe"                    %% correct — different ID
+      DedupeCache["Dedupe Cache"]
+  end
+  ```
+
 **Avoid fragile diagram types**:
 - `gitGraph` — unreliable rendering; use `graph LR` flowchart instead
 - Nested subgraphs with empty labels — always give meaningful labels

@@ -326,7 +326,34 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 - Contains `<br/>` + `()`: `ID["Process<br/>(async)"]`
 - Contains `{}`: `ID["Create ~/path/{project-name}/ dir"]` — `{}` is parsed as DIAMOND_START/END
 
+**Node IDs must not contain spaces** — the ID (before the brackets) is a single token:
+```
+AIProviders["LLM APIs"]     %% correct — no space in ID
+AI Providers["LLM APIs"]    %% WRONG — space causes parse error
+```
+Use camelCase or underscores: `MyNode`, `ai_providers`.
+
+**Edge labels MUST be enclosed in `|...|` with both a source and target node**:
+```
+A -->|label text| B          %% correct — closed pipes + target
+A -->|label text              %% WRONG — missing closing | and target node
+```
+Every `-->|` must have a matching `|` followed by a destination node on the same line.
+
 **sequenceDiagram rules**:
+
+**Participant references must match declared IDs exactly** — declared aliases are only for display; messages must use the short ID:
+```
+participant G as Gateway       %% declared ID is G, display alias is Gateway
+CH->>G: Route request          %% correct — uses G
+CH->>Gateway: Route request    %% WRONG — "Gateway" is not a declared ID
+```
+
+**Message syntax requires a colon** — `Source->>Target: text` is mandatory; never omit the `: text` portion:
+```
+A->>T: Tool result             %% correct — colon + message text
+A->>Tool Result                %% WRONG — no colon, "Tool Result" parsed as node string
+```
 - `alt`/`else`/`end` blocks only — never `alt cond1|cond2| target`
 - `style` directive does NOT work in sequenceDiagram — never use it there
 - `Note over A,B: text` is valid only in sequenceDiagram
@@ -334,6 +361,12 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 **flowchart/graph rules**:
 - `style` directive works ONLY in graph/flowchart — never in sequenceDiagram or stateDiagram
 - Keep style directives simple: `style A fill:#bbf,stroke:#333` (omit `stroke-width`)
+- **Direction choice** — avoid `LR` for long linear chains (8+ sequential nodes); use `TD` instead:
+  ```
+  flowchart TD    %% correct — vertical layout for long chains
+  flowchart LR    %% WRONG for 8+ nodes — crushed horizontally, text unreadable
+  ```
+  `LR` is fine for short fan-out diagrams (≤7 nodes in longest chain).
 
 **Avoid fragile diagram types**:
 - `gitGraph` — unreliable rendering; use `graph LR` flowchart instead
@@ -347,6 +380,11 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 4. All subgraph labels quoted if they contain spaces
 5. No `#` comments (use `%%`)
 6. Labels containing `{}``[]` `()` must be wrapped in double quotes
+7. No spaces in node IDs — use camelCase or underscores
+8. Every `-->|label|` has closing `|` and a target node
+9. sequenceDiagram messages use declared participant IDs (not display aliases)
+10. Every `->>` / `-->>` message has a colon and text after the target
+11. Long linear chains (8+ nodes) use `TD` direction, not `LR`
 
 ## Progress Reporting Format
 

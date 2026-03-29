@@ -74,6 +74,30 @@ For complex or technical projects, enable **Deep Analysis Mode** which adds:
 
 ### Step 0: Preparation
 
+0. **Duplicate Analysis Check** - Check if project has already been analyzed
+   - Derive `project-name` from project directory basename
+   - Check if output directory exists: `~/ai/code-analysi/{project-name}/`
+   - Check if project exists in `registry.ts` at `~/ai/code-analysi/site/src/lib/registry.ts`
+   - If project already analyzed:
+     - **Check if user is appending new content** (via `/czz-project-analyzer {text}` command)
+       - If `{text}` is provided, treat as **append mode**
+       - Derive new topic name from `{text}` or use incremental naming
+       - Add new topic to existing analysis
+       - Update main analysis file with new topic reference
+       - Update registry.ts with new topic
+       - Skip to Step 1-N for the new topic only
+     - **If no append content** (standard analysis command):
+       - **Ask user** what to do:
+         1. **Skip** - Keep existing analysis, do not overwrite
+         2. **View** - Show existing analysis summary
+         3. **Append** - Add new topics to existing analysis
+         4. **Re-analyze** - Overwrite existing analysis (requires explicit confirmation)
+       - If user chooses "Skip" or "View", stop analysis and show existing results
+       - If user chooses "Append", ask which topics to add
+       - If user chooses "Re-analyze", get explicit confirmation before proceeding
+   - Only proceed with full analysis if:
+     - Project has NOT been analyzed before, OR
+     - User explicitly confirms "Re-analyze"
 1. **Initialize Heartbeat Detection** - Create memory-based progress tracking
    - Write analysis start status to OpenClaw memory: `memory/YYYY-MM-DD.md`
    - Record current project path, analysis mode, and start timestamp
@@ -458,6 +482,104 @@ Always report after completing each topic:
 
 ## Example Response Pattern
 
+### When Project Has Already Been Analyzed
+
+**Standard command** (no append content):
+When user says "Analyze /Users/ccc/work/todo/kubernetes" (but it was already analyzed):
+
+```
+⚠️ Project already analyzed!
+
+Project: kubernetes
+Output directory: ~/ai/code-analysi/kubernetes/
+Analysis date: 2026-03-15
+Topics completed: 12/12 + 8 deep-dive topics
+
+What would you like to do?
+
+1. 📖 View existing analysis
+2. ✏️ Update specific topics
+3. 📎 Append new topics
+4. 🔄 Re-analyze (overwrite existing)
+5. ❌ Cancel
+
+Please choose (1-5):
+```
+
+If user chooses "View existing analysis":
+```
+📊 Kubernetes Analysis Summary
+
+📍 Location: ~/ai/code-analysi/kubernetes/
+📅 Analysis Date: 2026-03-15
+📚 Topics: 12 core + 8 deep-dive
+
+Key findings:
+• [Brief summary of key insights...]
+
+View full analysis:
+• Main report: ~/ai/code-analysi/kubernetes/kubernetes-analysis.md
+• Topics: ~/ai/code-analysi/kubernetes/topics/
+• Online: [docs-site-url if available]
+```
+
+If user chooses "Re-analyze":
+```
+⚠️ Confirm re-analysis
+
+This will OVERWRITE the existing analysis of kubernetes.
+
+Existing analysis will be backed up to:
+~/ai/code-analysi/kubernetes.backup.20260329/
+
+Are you sure you want to proceed? (yes/no):
+```
+
+Only proceed with analysis if user explicitly confirms "yes".
+
+### Append Mode (Adding New Topics to Existing Analysis)
+
+When user says "/czz-project-analyzer model-loading-architecture" for an already-analyzed project:
+
+```
+📎 Append mode detected
+
+Project: openclaw (already analyzed)
+Existing analysis: ~/ai/code-analysi/openclaw/
+Existing topics: 12 core + 8 deep-dive
+New topic: Model Loading Architecture
+
+🔵 Analyzing new topic: Model Loading Architecture
+
+📋 Analysis scope: Model loading flow, provider runtime, LLM resolution
+🎯 Focus areas: Model catalog, resolution engine, provider plugins
+
+[... analysis in progress ...]
+
+✅ Model Loading Architecture completed
+
+📁 Files created/updated:
+• Created: ~/ai/code-analysi/openclaw/topics/13-model-loading-architecture.md
+• Updated: ~/ai/code-analysi/openclaw/openclaw-analysis.md
+• Updated: ~/ai/code-analysi/site/src/lib/registry.ts (added md_320)
+
+📊 Updated analysis summary:
+• Total topics: 13 core + 8 deep-dive
+• New topic added: Model Loading Architecture
+
+Online: [docs-site-url]
+```
+
+**In append mode**:
+- Do NOT create new output directory
+- Do NOT overwrite existing main analysis file
+- Add new topic document to `topics/` directory
+- Append topic reference to main analysis file
+- Update registry.ts with new `md_N` import
+- Use incremental topic numbering (13, 14, etc.)
+
+### When Project Has NOT Been Analyzed Before
+
 When user says "Analyze /Users/ccc/work/todo/kubernetes":
 
 ```
@@ -498,6 +620,9 @@ Would you like to dive deeper into any specific area?
 
 ## Important Notes
 
+- **🚨 Check for existing analysis first** - Before starting any analysis, ALWAYS check if the project has already been analyzed. Ask user what to do if it has.
+- **Never overwrite without explicit confirmation** - If project exists, get user's explicit consent before re-analyzing
+- **Backup existing analysis** - When re-analyzing, create a backup of the existing analysis directory
 - **Always complete all 12 topics** - don't stop early unless user says "stop"
 - **🔵 Report STARTING each topic** - always inform user when beginning each topic analysis
 - **Report after each topic** - immediately inform user when each topic is done

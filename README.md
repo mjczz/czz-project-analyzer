@@ -125,6 +125,7 @@ czz-project-analyzer/
 ├── PATH_GUIDE.md              # 🛣️ Path storage guide - ensures correct document locations
 ├── EXAMPLE_WORKFLOW.md         # 🎯 Usage examples - demonstrates complete analysis flow
 ├── INTEGRATION_SUMMARY.md      # 🎉 Integration summary - records Kubernetes methodology
+├── demo-mermaid.md             # 📊 Mermaid diagram examples - 15 diagram types × 2 examples each
 ├── README.md                   # 📖 This file - project overview and quick start
 └── .gitignore
 ```
@@ -205,6 +206,20 @@ The czz-project-analyzer skill uses a comprehensive documentation system where e
   - Three analysis modes (Quick/Standard/Deep)
   - Deep analysis capabilities (8 additional topics)
 
+**demo-mermaid.md** - Mermaid diagram examples library ⭐
+- **When used**: Whenever creating mermaid diagrams during analysis
+- **Purpose**: Provides syntax-correct examples for all diagram types
+- **Key content**:
+  - 15 diagram types × 2 examples each = 30 total examples
+  - All examples follow mandatory syntax rules (double-quoted labels, proper brackets)
+  - Covers: graph, sequenceDiagram, stateDiagram-v2, erDiagram, flowchart, subgraph
+  - Use as templates when creating project-specific diagrams
+
+### 🔄 Key content:
+  - Five core principles from Kubernetes analysis
+  - Three analysis modes (Quick/Standard/Deep)
+  - Deep analysis capabilities (8 additional topics)
+
 ### 🔄 Document Usage Flow
 
 ```mermaid
@@ -246,6 +261,7 @@ graph TD
 | **PATH_GUIDE.md** | All phases | Path validation | Correct file locations |
 | **EXAMPLE_WORKFLOW.md** | Reference | Learning and understanding | Demonstrates usage patterns |
 | **INTEGRATION_SUMMARY.md** | Reference | Background understanding | Documents analytical foundation |
+| **demo-mermaid.md** | Diagram creation | Template reference | Provides syntax-correct diagram examples |
 
 ## Related Skills
 

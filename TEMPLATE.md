@@ -31,15 +31,14 @@
 
 ### Module Relationship Diagram
 
-```mermaid
-graph LR
-    A["Core Module"] --> B["Utils Module"]
-    A --> C["Config Module"]
-    D["API Layer"] --> A
-    D --> E["Middleware"]
-    E --> C
-    F["Tests"] --> A
-```
+> 📚 Reference: `demo-mermaid.md` - Section 1 (Module Graph)
+
+**Create a diagram showing:**
+- Core modules and their relationships
+- Dependencies between components
+- Layer interactions (API → Core → Utils)
+
+**Diagram type:** `graph LR`
 
 ---
 
@@ -54,19 +53,15 @@ graph LR
 
 ### Dependency Diagram
 
-```mermaid
-graph TD
-    A["Application"] --> B["Core Library 1"]
-    A --> C["Core Library 2"]
-    B --> D["Utility Library"]
-    C --> D
-    B --> E["Third-party API"]
-    C --> F["Database Driver"]
+> 📚 Reference: `demo-mermaid.md` - Section 2 (Graph TD - Dependency Diagram)
 
-    style A fill:#f9f,stroke:#333
-    style B fill:#bbf,stroke:#333
-    style C fill:#bbf,stroke:#333
-```
+**Create a diagram showing:**
+- Application at the top
+- Core libraries in middle layer
+- Shared utilities and external dependencies at bottom
+- Use `style` directives for visual distinction
+
+**Diagram type:** `graph TD` with `style` directives
 
 ---
 
@@ -79,20 +74,14 @@ graph TD
 
 ### Core Process Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant User as User
-    participant Frontend as Frontend
-    participant Backend as Backend
-    participant DB as Database
+> 📚 Reference: `demo-mermaid.md` - Section 3 (Sequence Diagram)
 
-    User->>Frontend: Initiate request
-    Frontend->>Backend: API call
-    Backend->>DB: Query data
-    DB-->>Backend: Return result
-    Backend-->>Frontend: Response data
-    Frontend-->>User: Display result
-```
+**Create a diagram showing:**
+- User → Frontend → Backend → Database interaction flow
+- Request/response messages with `->>` and `-->>`
+- Use participant aliases for clarity
+
+**Diagram type:** `sequenceDiagram`
 
 ---
 
@@ -107,28 +96,15 @@ sequenceDiagram
 
 ### Architecture Diagram
 
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        A["UI Components"]
-    end
+> 📚 Reference: `demo-mermaid.md` - Section 4 (Architecture with Subgraphs)
 
-    subgraph "Business Layer"
-        B["Service A"]
-        C["Service B"]
-    end
+**Create a diagram showing:**
+- Frontend Layer (UI components)
+- Business Layer (services)
+- Data Layer (databases, caches)
+- Connections between layers
 
-    subgraph "Data Layer"
-        D[("Database")]
-        E[("Cache")]
-    end
-
-    A --> B
-    A --> C
-    B --> D
-    B --> E
-    C --> D
-```
+**Diagram type:** `graph TB` with `subgraph`
 
 ### Key Modules
 | Module | Responsibility | Dependencies |
@@ -137,17 +113,15 @@ graph TB
 
 ### Data Flow
 
-```mermaid
-flowchart LR
-    A["User Request"] --> B["Gateway/Router"]
-    B --> C["Business Logic Processing"]
-    C --> D{"Data Processing"}
-    D --> E["Query Database"]
-    D --> F["Call External Services"]
-    E --> G["Assemble Response"]
-    F --> G
-    G --> H["Return to User"]
-```
+> 📚 Reference: `demo-mermaid.md` - Section 5 (Data Flow Diagram)
+
+**Create a diagram showing:**
+- User request entry point
+- Processing steps
+- Decision points with labeled edges (use `-->|"label"|)
+- Response assembly and return
+
+**Diagram type:** `flowchart LR` with decision diamonds
 
 ---
 
@@ -290,20 +264,14 @@ type CoreStruct struct {
 
 ### Key Function Call Chains
 
-```mermaid
-sequenceDiagram
-    participant Client as Client
-    participant API as API Layer
-    participant Core as Core Logic
-    participant DB as Data Layer
+> 📚 Reference: `demo-mermaid.md` - Section 3 (Sequence Diagram)
 
-    Client->>API: Request
-    API->>Core: Process logic
-    Core->>DB: Data access
-    DB-->>Core: Return data
-    Core-->>API: Process result
-    API-->>Client: Response
-```
+**Create a diagram showing:**
+- Client → API → Core → Data Layer call chain
+- Request flow with `->>`
+- Response flow with `-->>`
+
+**Diagram type:** `sequenceDiagram`
 
 ---
 
@@ -320,16 +288,15 @@ sequenceDiagram
 
 **Implementation Process:**
 
-```mermaid
-flowchart TD
-    A["Start"] --> B["Step 1"]
-    B --> C{"Condition Check"}
-    C -->|Condition Met| D["Step 2A"]
-    C -->|Condition Not Met| E["Step 2B"]
-    D --> F["Step 3"]
-    E --> F
-    F --> G["End"]
-```
+> 📚 Reference: `demo-mermaid.md` - Section 6 (Flowchart with Decision)
+
+**Create a diagram showing:**
+- Process start point
+- Sequential steps
+- Decision branches with labeled edges (`-->|"Condition Met"|`)
+- Convergence and end point
+
+**Diagram type:** `flowchart TD` with decision diamonds
 
 **Key Code Snippets:**
 
@@ -350,33 +317,15 @@ function keyImplementation() {
 
 ### Component Architecture Diagram
 
-```mermaid
-graph TB
-    subgraph "External Interface Layer"
-        A["API/Interface"]
-    end
+> 📚 Reference: `demo-mermaid.md` - Section 7 (Component Architecture)
 
-    subgraph "Core Component Layer"
-        B["Component 1"]
-        C["Component 2"]
-        D["Component 3"]
-    end
+**Create a diagram showing:**
+- External Interface Layer (APIs)
+- Core Component Layer (main components)
+- Foundation Service Layer (infrastructure)
+- Dependencies between layers
 
-    subgraph "Foundation Service Layer"
-        E["Storage"]
-        F["Network"]
-        G["Configuration"]
-    end
-
-    A --> B
-    A --> C
-    B --> E
-    B --> F
-    C --> E
-    C --> G
-    D --> F
-    D --> G
-```
+**Diagram type:** `graph TB` with nested `subgraph`
 
 ### Detailed Component Analysis
 
@@ -406,15 +355,14 @@ graph TB
 
 ### Communication Protocols
 
-```mermaid
-sequenceDiagram
-    participant Client as Client
-    participant Server as Server
+> 📚 Reference: `demo-mermaid.md` - Section 8 (Communication Protocol)
 
-    Client->>Server: Request message
-    Note over Client,Server: Protocol format description
-    Server-->>Client: Response message
-```
+**Create a diagram showing:**
+- Client ↔ Server message exchange
+- Request/response patterns
+- Use `Note over` for protocol descriptions
+
+**Diagram type:** `sequenceDiagram` with `Note over`
 
 ### Data Formats
 
@@ -432,19 +380,15 @@ sequenceDiagram
 
 ### End-to-End Process Analysis
 
-```mermaid
-flowchart LR
-    A["User Action"] --> B["Frontend Processing"]
-    B --> C["API Call"]
-    C --> D["Business Logic"]
-    D --> E["Data Operation"]
-    E --> F["Result Return"]
-    F --> G["User Response"]
+> 📚 Reference: `demo-mermaid.md` - Section 9 (Workflow Tracing)
 
-    style A fill:#e1f5ff
-    style G fill:#e1f5ff
-    style D fill:#fff4e1
-```
+**Create a diagram showing:**
+- User action trigger
+- Frontend → API → Business Logic → Data flow
+- Result return path
+- Use `style` for visual emphasis
+
+**Diagram type:** `flowchart LR` with `style` directives
 
 ### Key Path Tracing
 
@@ -495,18 +439,14 @@ flowchart LR
 
 ### Performance Optimization Mechanisms
 
-```mermaid
-graph LR
-    A["Performance Optimization Strategy"] --> B["Caching Mechanism"]
-    A --> C["Connection Pool"]
-    A --> D["Async Processing"]
-    A --> E["Data Sharding"]
+> 📚 Reference: `demo-mermaid.md` - Section 10 (Performance Optimization)
 
-    B --> F["Improve Response Speed"]
-    C --> F
-    D --> G["Increase Throughput"]
-    E --> G
-```
+**Create a diagram showing:**
+- Optimization strategies as root node
+- Different optimization approaches
+- Result categories (speed, throughput)
+
+**Diagram type:** `graph LR` with fan-out pattern
 
 ### Performance Bottlenecks
 
@@ -530,25 +470,14 @@ graph LR
 
 ### Testing Architecture
 
-```mermaid
-graph TB
-    subgraph "Test Levels"
-        A["Unit Tests"]
-        B["Integration Tests"]
-        C["System Tests"]
-    end
+> 📚 Reference: `demo-mermaid.md` - Section 11 (Testing Architecture)
 
-    subgraph "Test Support"
-        D["Mock Tools"]
-        E["Test Data"]
-        F["Test Environment"]
-    end
+**Create a diagram showing:**
+- Test Levels subgraph (Unit, Integration, System)
+- Test Support subgraph (Mocks, Data, Environment)
+- Dependencies between test levels and support
 
-    A --> D
-    B --> D
-    B --> E
-    C --> F
-```
+**Diagram type:** `graph TB` with `subgraph`
 
 ### Key Test Scenarios
 
@@ -576,20 +505,14 @@ section:
 
 ### Deployment Architecture
 
-```mermaid
-graph TB
-    subgraph "Production Environment"
-        A["Load Balancer"]
-        B["App Instance 1"]
-        C["App Instance 2"]
-        D[("Database")]
-    end
+> 📚 Reference: `demo-mermaid.md` - Section 12 (Deployment Architecture)
 
-    A --> B
-    A --> C
-    B --> D
-    C --> D
-```
+**Create a diagram showing:**
+- Production Environment subgraph
+- Load Balancer → App Instances → Database
+- High availability setup
+
+**Diagram type:** `graph TB` with `subgraph`
 
 ---
 
@@ -623,58 +546,38 @@ command2 --debug
 
 #### State Transition Diagram (if applicable)
 
-```mermaid
-stateDiagram-v2
-    [*] --> Initialization
-    Initialization --> Running
-    Running --> Paused: User pause
-    Running --> Error: Exception
-    Paused --> Running: User resume
-    Error --> Running: Retry successful
-    Error --> [*]: Give up
-    Running --> [*]: Completed
-```
+> 📚 Reference: `demo-mermaid.md` - Section 13 (State Diagram)
+
+**Create a diagram showing:**
+- State transitions with labels
+- Initial state `[*]`
+- Terminal states
+- Error handling paths
+
+**Diagram type:** `stateDiagram-v2`
 
 #### Database ER Diagram (if applicable)
 
-```mermaid
-erDiagram
-    USER ||--o{ ORDER : places
-    ORDER ||--|{ LINE_ITEM : contains
-    PRODUCT ||--o{ LINE_ITEM : "is in"
+> 📚 Reference: `demo-mermaid.md` - Section 14 (ER Diagram)
 
-    USER {
-        uuid id PK
-        string name
-        string email
-    }
+**Create a diagram showing:**
+- Entity relationships (`||--o{`, `||--|{`)
+- Entity attributes with types
+- Primary keys (PK) and foreign keys (FK)
 
-    ORDER {
-        uuid id PK
-        uuid user_id FK
-        datetime created_at
-    }
-
-    PRODUCT {
-        uuid id PK
-        string name
-        decimal price
-    }
-```
+**Diagram type:** `erDiagram`
 
 #### Git Branching Strategy (if applicable)
 
-> Note: Avoid `gitGraph` — it is fragile and often fails to render. Use a flowchart instead:
+> 📚 Reference: `demo-mermaid.md` - Section 15 (Git Branching - Flowchart Alternative)
+> Note: Avoid `gitGraph` — it is fragile. Use flowchart instead.
 
-```mermaid
-graph LR
-    A["main"] --> B["develop"]
-    B --> C["feature-A"]
-    B --> D["feature-B"]
-    C --> E["merge to develop"]
-    D --> E
-    E --> F["merge to main"]
-```
+**Create a diagram showing:**
+- Main branch structure
+- Feature branches
+- Merge paths
+
+**Diagram type:** `graph LR`
 
 **One-sentence evaluation:**
 

@@ -305,6 +305,19 @@ sequenceDiagram
     Frontend-->>User: Result
 ```
 
+### 📚 Complete Mermaid Examples Reference
+
+For comprehensive examples of all diagram types with proper syntax, reference:
+`~/.agents/skills/czz-project-analyzer/demo-mermaid.md`
+
+This file contains 2 examples for each of 15 diagram types, all following the mandatory syntax rules below.
+
+**When creating any mermaid diagram during analysis:**
+1. Consult `demo-mermaid.md` for the correct diagram type and structure
+2. Copy the relevant example as a template
+3. Adapt the content to match the project being analyzed
+4. Verify all syntax rules are followed (see below)
+
 ### Mermaid Syntax Rules (MANDATORY)
 
 Every mermaid block generated during analysis MUST follow these rules. Violations cause parse errors.
@@ -358,12 +371,12 @@ AI Providers["LLM APIs"]    %% WRONG — space causes parse error
 ```
 Use camelCase or underscores: `MyNode`, `ai_providers`.
 
-**Edge labels MUST be enclosed in `|...|` with both a source and target node**:
+**Edge labels MUST be enclosed in `|"..."|` with both a source and target node**:
 ```
-A -->|label text| B          %% correct — closed pipes + target
-A -->|label text              %% WRONG — missing closing | and target node
+A -->|"label text"| B          %% correct — closed pipes + target
+A -->|"label text"              %% WRONG — missing closing | and target node
 ```
-Every `-->|` must have a matching `|` followed by a destination node on the same line.
+Every `-->|"..."|` must have a matching `|` followed by a destination node on the same line.
 
 **sequenceDiagram rules**:
 
@@ -417,7 +430,7 @@ A->>Tool Result                %% WRONG — no colon, "Tool Result" parsed as no
 5. No `#` comments (use `%%`)
 6. Labels containing `{}``[]` `()` must be wrapped in double quotes
 7. No spaces in node IDs — use camelCase or underscores
-8. Every `-->|label|` has closing `|` and a target node
+8. Every `-->|"label"|` has closing `|` and a target node
 9. sequenceDiagram messages use declared participant IDs (not display aliases)
 10. Every `->>` / `-->>` message has a colon and text after the target
 11. Long linear chains (8+ nodes) use `TD` direction, not `LR`
@@ -452,6 +465,7 @@ Always report after completing each topic:
 - **Documentation guidelines**: `~/.claude/skills/czz-project-analyzer/DOCUMENTATION_GUIDELINES.md`
 - **Path storage guide**: `~/.claude/skills/czz-project-analyzer/PATH_GUIDE.md`
 - **Usage examples**: `~/.claude/skills/czz-project-analyzer/EXAMPLE_WORKFLOW.md`
+- **Mermaid diagram examples**: `~/.claude/skills/czz-project-analyzer/demo-mermaid.md` ⭐ **Reference for all diagram types**
 - **Output directory**: `~/ai/code-analysi/{project-name}/` (centralized hub)
 - **Output naming**: `{project-name}-analysis.md`
 

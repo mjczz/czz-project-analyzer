@@ -349,6 +349,7 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 - Contains `:` + `/`: `ID["CIDR: 10.0.0.0/16"]`
 - Contains `<br/>` + `()`: `ID["Process<br/>(async)"]`
 - Contains `{}`: `ID["Create ~/path/{project-name}/ dir"]` — `{}` is parsed as DIAMOND_START/END
+- **Contains `()` inside `[]`**: `ID["HTTP API (/admin, /api)"]` — parentheses inside brackets MUST be quoted; bare `ID[Label (text)]` causes parse errors
 
 **Node IDs must not contain spaces** — the ID (before the brackets) is a single token:
 ```

@@ -364,6 +364,13 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 - Contains `{}`: `ID["Create ~/path/{project-name}/ dir"]` — `{}` is parsed as DIAMOND_START/END
 - **Contains `()` inside `[]`**: `ID["HTTP API (/admin, /api)"]` — parentheses inside brackets MUST be quoted; bare `ID[Label (text)]` causes parse errors
 
+**Decision/condition node labels** — use `{condition?}` without quotes around the whole label:
+```
+DecisionNode{condition?}              %% correct — condition inside diamond
+DecisionNode{"condition?"}            %% WRONG — quotes force literal {}, then inner {} conflicts
+```
+When you write `{"condition?"}`, Mermaid parses the outer `"..."` as a label string, but the inner `{}` is still evaluated as a hexagon shape, causing rendering errors. Always use unquoted `{condition?}` for decision nodes.
+
 **Node IDs must not contain spaces** — the ID (before the brackets) is a single token:
 ```
 AIProviders["LLM APIs"]     %% correct — no space in ID
@@ -434,6 +441,7 @@ A->>Tool Result                %% WRONG — no colon, "Tool Result" parsed as no
 9. sequenceDiagram messages use declared participant IDs (not display aliases)
 10. Every `->>` / `-->>` message has a colon and text after the target
 11. Long linear chains (8+ nodes) use `TD` direction, not `LR`
+12. **Decision nodes use `{condition?}` without outer quotes** — never `{"condition?"}` which causes inner `{}` to be parsed as hexagon shape
 
 ## Progress Reporting Format
 

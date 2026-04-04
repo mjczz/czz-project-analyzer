@@ -607,3 +607,19 @@ All diagrams follow these rules:
 8. ✅ No `style` in sequenceDiagram or stateDiagram
 9. ✅ Long chains (8+ nodes) use `TD` not `LR`
 10. ✅ Subgraph labels quoted if containing spaces
+11. ✅ **Subgraph format is `subgraph ID["Label"]`** — ID outside quotes, label inside quotes
+
+**Subgraph format reference**:
+```
+subgraph "Label only"        %% label-only format (no ID needed)
+    A["Node"]
+end
+
+subgraph MyID["Label with ID"]   %% ID + label format
+    B["Child Node"]
+end
+
+subgraph "WRONG ID["Label"]"     %% NEVER do this — ID inside quotes is wrong
+    C["Wrong"]
+end
+```

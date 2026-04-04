@@ -343,8 +343,26 @@ Use a suffix: `LoopNode`, `EndState`, `AltPath`.
 
 **Subgraph labels**: always quote labels containing spaces or special characters:
 ```
-subgraph "Frontend Layer"   %% correct
+subgraph "Frontend Layer"   %% correct — label only (no ID)
     A[UI]
+end
+```
+
+**Subgraph with ID and label**: use `subgraph ID["Label"]` format (ID first, then label in quotes):
+```
+subgraph FrontendLayer["Frontend Layer"]   %% correct — ID + quoted label
+    A["UI Component"]
+end
+
+subgraph BackendAPI["Backend API"]   %% correct
+    B["Service A"]
+end
+```
+
+**Common error — NEVER do this**:
+```
+subgraph "FrontendLayer["Frontend Layer"]   %% WRONG — mixes ID inside quotes
+    A["UI"]
 end
 ```
 
@@ -435,14 +453,15 @@ A->>Tool Result                %% WRONG — no colon, "Tool Result" parsed as no
 2. No reserved keyword used as node/participant ID
 3. No `style` in sequenceDiagram or stateDiagram
 4. All subgraph labels quoted if they contain spaces
-5. No `#` comments (use `%%`)
-6. Labels containing `{}``[]` `()` must be wrapped in double quotes
-7. No spaces in node IDs — use camelCase or underscores
-8. Every `-->|"label"|` has closing `|` and a target node
-9. sequenceDiagram messages use declared participant IDs (not display aliases)
-10. Every `->>` / `-->>` message has a colon and text after the target
-11. Long linear chains (8+ nodes) use `TD` direction, not `LR`
-12. **Decision nodes use `{condition?}` without outer quotes** — never `{"condition?"}` which causes inner `{}` to be parsed as hexagon shape
+5. **Subgraph format is `subgraph ID["Label"]`** — never `subgraph "ID[Label]"` (ID goes OUTSIDE quotes, label goes INSIDE quotes)
+6. No `#` comments (use `%%`)
+7. Labels containing `{}``[]` `()` must be wrapped in double quotes
+8. No spaces in node IDs — use camelCase or underscores
+9. Every `-->|"label"|` has closing `|` and a target node
+10. sequenceDiagram messages use declared participant IDs (not display aliases)
+11. Every `->>` / `-->>` message has a colon and text after the target
+12. Long linear chains (8+ nodes) use `TD` direction, not `LR`
+13. **Decision nodes use `{condition?}` without outer quotes** — never `{"condition?"}` which causes inner `{}` to be parsed as hexagon shape
 
 ## Progress Reporting Format
 

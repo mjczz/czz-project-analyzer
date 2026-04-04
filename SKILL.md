@@ -360,6 +360,7 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 - Contains `@`: `ID["@ notification"]`
 - Contains `[]`: `ID["items[0]"]`
 - Contains `:` + `/`: `ID["CIDR: 10.0.0.0/16"]`
+- Contains `/` (path-like): `ID["openclaw/plugin-sdk"]` — paths with slashes must use square bracket wrapping with quotes
 - Contains `<br/>` + `()`: `ID["Process<br/>(async)"]`
 - Contains `{}`: `ID["Create ~/path/{project-name}/ dir"]` — `{}` is parsed as DIAMOND_START/END
 - **Contains `()` inside `[]`**: `ID["HTTP API (/admin, /api)"]` — parentheses inside brackets MUST be quoted; bare `ID[Label (text)]` causes parse errors

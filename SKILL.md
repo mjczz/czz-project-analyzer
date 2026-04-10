@@ -147,10 +147,12 @@ For **each of the 12 topics**:
 7. **Update changelog.md** with document creation record
 8. **Update registry.ts** — add this topic to the docs site registry:
    - File: `~/ai/code-analysi/site/src/lib/registry.ts`
-   - Add a new `import md_N from '../../../{project-name}/topics/{filename}.md?raw'` at the end of the import block
+   - Add a new `import md_N from '../../../{project-name}/topics/{filename}.md?url'` at the end of the import block (**MUST use `?url`, NOT `?raw`** — `?raw` embeds full file content and causes Worker bundle to exceed Cloudflare's 3 MiB free plan limit)
    - `md_N` uses the counter from Step 0 (increment after each use)
    - If this is the **first topic** of a new project, also add a new project object to the `projects` array with an initial `topics: [...]` containing just this one topic
    - If the project entry **already exists** in the array, just append the new topic to its `topics: [...]` array
+   - Topic entries use `url: md_N` field (**NOT `content: md_N`**) — content is loaded at runtime via `useTopicContent` hook from static assets
+   - **Title**: Extract from the markdown file's H1 heading (`# Title`) and hardcode it in the registry entry
    - **Category**: `NN-*.md` → `'core'`, `deep-dive-*.md` → `'deep-dive'`, everything else → `'other'`
    - **Order**: use the `md_N` number
    - **Slug**: filename without `.md`, must be unique within the project
@@ -618,7 +620,7 @@ Online: [docs-site-url]
 - Do NOT overwrite existing main analysis file
 - Add new topic document to `topics/` directory
 - Append topic reference to main analysis file
-- Update registry.ts with new `md_N` import
+- Update registry.ts with new `md_N` import (using `?url`, NOT `?raw`)
 - Use incremental topic numbering (13, 14, etc.)
 
 ### When Project Has NOT Been Analyzed Before

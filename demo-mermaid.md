@@ -174,7 +174,7 @@ graph TB
 flowchart LR
     A["User Request"] --> B["Gateway/Router"]
     B --> C["Business Logic Processing"]
-    C --> D{"Data Processing"}
+    C --> D{Data Processing}
     D -->|"Query"| E["Query Database"]
     D -->|"External"| F["Call External Services"]
     E --> G["Assemble Response"]
@@ -188,7 +188,7 @@ flowchart LR
 flowchart TD
     A["Data Source"] --> B["Extract"]
     B --> C["Validate"]
-    C --> D{"Is Valid?"}
+    C --> D{Is Valid?}
     D -->|"Yes"| E["Transform"]
     D -->|"No"| F["Log Error"]
     E --> G["Load"]
@@ -204,7 +204,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     A["Start"] --> B["Step 1"]
-    B --> C{"Condition Check"}
+    B --> C{Condition Check}
     C -->|"Condition Met"| D["Step 2A"]
     C -->|"Condition Not Met"| E["Step 2B"]
     D --> F["Step 3"]
@@ -217,10 +217,10 @@ flowchart TD
 ```mermaid
 flowchart TD
     A["Receive Request"] --> B["Validate Input"]
-    B --> C{"Valid?"}
+    B --> C{Valid?}
     C -->|"Yes"| D["Process Request"]
     C -->|"No"| E["Return Error"]
-    D --> F{"Success?"}
+    D --> F{Success?}
     F -->|"Yes"| G["Return Result"]
     F -->|"No"| H["Log Exception"]
     H --> I["Return Error"]
@@ -340,11 +340,11 @@ flowchart LR
 ```mermaid
 flowchart LR
     A["Place Order"] --> B["Validate Inventory"]
-    B --> C{"In Stock?"}
+    B --> C{In Stock?}
     C -->|"Yes"| D["Reserve Items"]
     C -->|"No"| E["Notify Customer"]
     D --> F["Process Payment"]
-    F --> G{"Paid?"}
+    F --> G{Paid?}
     G -->|"Yes"| H["Confirm Order"]
     G -->|"No"| I["Cancel Reservation"]
 ```
@@ -372,7 +372,7 @@ graph LR
 
 ```mermaid
 graph TD
-    A["Client Request"] --> B{"Cache Hit?"}
+    A["Client Request"] --> B{Cache Hit?}
     B -->|"Hit"| C["Return Cached"]
     B -->|"Miss"| D["Query Database"]
     D --> E["Update Cache"]
@@ -413,10 +413,10 @@ graph TB
 graph LR
     A["Code Push"] --> B["Build"]
     B --> C["Unit Tests"]
-    C --> D{"Passed?"}
+    C --> D{Passed?}
     D -->|"Yes"| E["Integration Tests"]
     D -->|"No"| F["Notify Developer"]
-    E --> G{"Passed?"}
+    E --> G{Passed?}
     G -->|"Yes"| H["Deploy"]
     G -->|"No"| F
 ```
@@ -608,6 +608,7 @@ All diagrams follow these rules:
 9. ✅ Long chains (8+ nodes) use `TD` not `LR`
 10. ✅ Subgraph labels quoted if containing spaces
 11. ✅ **Subgraph format is `subgraph ID["Label"]`** — ID outside quotes, label inside quotes
+12. ✅ **Diamond `{text?}` nodes without quotes** — `{"text"}` causes hexagon parse error; do NOT convert to `["text"]` (loses decision semantics)
 
 **Subgraph format reference**:
 ```

@@ -389,8 +389,18 @@ NEVER use bare brackets: `A[Label text]` is fragile — always use `A["Label tex
 ```
 DecisionNode{condition?}              %% correct — condition inside diamond
 DecisionNode{"condition?"}            %% WRONG — quotes force literal {}, then inner {} conflicts
+DecisionNode["condition?"]            %% WRONG — loses diamond semantics, do NOT convert to rectangle
 ```
 When you write `{"condition?"}`, Mermaid parses the outer `"..."` as a label string, but the inner `{}` is still evaluated as a hexagon shape, causing rendering errors. Always use unquoted `{condition?}` for decision nodes.
+
+**Do NOT convert diamond `{}` to rectangle `[]` just to avoid the quote issue** — diamond shape carries semantic meaning (decision/branch). The correct fix is to keep `{}` but remove quotes.
+
+**Exception**: Diamond nodes do NOT support `<br/>` or full-width CJK punctuation (e.g. `？` `，` `！`). When text contains these, use `["..."]` rectangle nodes instead:
+```
+D{有增长?}                  %% correct — half-width ? works
+D{重启后<br/>又涨到水位？}    %% WRONG — <br/> + full-width ? causes DIAMOND_STOP
+D["重启后<br/>又涨到水位？"]  %% correct — use rectangle when text has <br/> or full-width punctuation
+```
 
 **Node IDs must not contain spaces** — the ID (before the brackets) is a single token:
 ```
@@ -463,7 +473,7 @@ A->>Tool Result                %% WRONG — no colon, "Tool Result" parsed as no
 10. sequenceDiagram messages use declared participant IDs (not display aliases)
 11. Every `->>` / `-->>` message has a colon and text after the target
 12. Long linear chains (8+ nodes) use `TD` direction, not `LR`
-13. **Decision nodes use `{condition?}` without outer quotes** — never `{"condition?"}` which causes inner `{}` to be parsed as hexagon shape
+13. **Decision nodes use `{condition?}` without outer quotes** — never `{"condition?"}` (hexagon parse error) or `["condition?"]` (loses diamond semantics). Only use `["..."]` when text contains `<br/>` or full-width CJK punctuation
 
 ## Progress Reporting Format
 
